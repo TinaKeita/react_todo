@@ -1,0 +1,8 @@
+.diary-entry {
+    border: 1px solid #ccc;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}

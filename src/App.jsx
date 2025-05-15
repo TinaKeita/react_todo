@@ -12,30 +12,46 @@ function App() {
 
     const [newTask, setNewTask] = useState("");
 
-    function handleAdd(event) {
-        event.preventDefault();
+    function handleAdd(event) {//apstrādā formu, kad pievieno jaunu uzdevumu
+        event.preventDefault(); //neļauj lapai pašai pārlādēties
 
         const newTodo = {
-            id: crypto.randomUUID(),
+            id: crypto.randomUUID(), //izveido jaunu objektu ar random unikālu id
             task: newTask,
             completed: false,
         };
 
         setTodos([...todos, newTodo]);
-        setNewTask(""); // notīra ievades lauku
+        setNewTask(""); // notirits ievades laiks
         console.log("Added");
     }
-    function handleDelete(id) {
+    function handleDelete(id) {//handelo dzēšanu
         setTodos((prevTodos) => prevTodos.filter(todo => todo.id !== id));
     };
 
+    function handleToggle(id) { //handelo uzdevuma izveidi
+        setTodos((prevTodos) =>
+        prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    )
+    );
+    }
+    function handleEdit(id, newTask) { //handelo todo rediģēšanu
+    setTodos((prevTodos) =>
+        prevTodos.map((todo) =>
+            todo.id === id ? { ...todo, task: newTask } : todo
+        )
+    );
+}
+
+    //atgrieztās vērtības
     return (
         <>
             <h1>Veicamie uzdevumi</h1>
             {todos.map((todo) => (
-                <ToDo key={todo.id} {...todo} onDelete={handleDelete}/>
+                <ToDo key={todo.id} {...todo} onDelete={handleDelete} onToggle={handleToggle} onEdit={handleEdit}/>
             ))}
-
+            <br />
             <form onSubmit={handleAdd}>
                 <label>
                     <input
