@@ -27,7 +27,7 @@ function ToDo({ id, task, completed, onDelete, onToggle, onEdit }) {
                         value={editedTask}
                         onChange={(e) => setEditedTask(e.target.value)}
                     />
-                    <button onClick={handleSave}>💾</button> //izsauc save kas saglabā mainīto info
+                    <button onClick={handleSave}>💾</button> {/*izsauc save kas saglaba izmainīto info*/}
                 </>
             ) : (
                 <>
